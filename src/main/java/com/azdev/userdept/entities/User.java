@@ -1,6 +1,20 @@
 package com.azdev.userdept.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity // é do JPA
+@Table(name = "tb_user")
+
 public class User {
+
+    @Id // significa que esse Id vai ser a chave primaria do banco
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
 
@@ -8,7 +22,9 @@ public class User {
 
     private String email;
 
-    private Department department;
+    @ManyToOne 
+    @JoinColumn(name = "department_id")  // nome da chave estrangeira do banco
+    private Department department; // pq?
 
     public User() {
 
